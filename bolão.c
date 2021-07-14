@@ -2,7 +2,7 @@
 #include <string.h>
 #include <locale.h>
 
-// O Bolão - versão 1.1.0 (beta) - autor: Shiva Pires
+// O Bolão - versão 1.1.1 (beta) - autor: Shiva Pires
 
 typedef struct{
 	int mandante;
@@ -56,7 +56,7 @@ void main(){
 				if(apostas[x].apostas[y].mandante == resultados[y].mandante || apostas[x].apostas[y].visitante == resultados[y].visitante){
 					if(resultados[y].mandante > resultados[y].visitante && apostas[x].apostas[y].mandante > apostas[x].apostas[y].visitante || resultados[y].mandante < resultados[y].visitante && apostas[x].apostas[y].mandante < apostas[x].apostas[y].visitante){
 						if(resultados[y].mandante - resultados[y].visitante == 0 || apostas[x].apostas[y].mandante - apostas[x].apostas[y].visitante == 0){
-							if(apostas[x].apostas[y].mandante == resultados[y].mandante && apostas[x].apostas[y].visitante == resultados[y].visitante){
+							if(apostas[x].apostas[y].mandante == resultados[y].mandante || apostas[x].apostas[y].visitante == resultados[y].visitante){
 								apostas[x].pontuacao[y] = 7;
 							}
 							else apostas[x].pontuacao[y] = 0;

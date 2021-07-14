@@ -2,7 +2,7 @@
 #include <string.h>
 #include <locale.h>
 
-// O Bolão - versão 1.0.0 (beta) - autor: Shiva Pires
+// O BolÃ£o - versÃ£o 1.1.0 (beta) - autor: Shiva Pires
 
 typedef struct{
 	int mandante;
@@ -23,26 +23,26 @@ void main(){
 	printf("Quantos jogos ocorreram nessa rodada:\t", setlocale(LC_ALL,""));
 	scanf("%d", &np);
 	system("cls");
-	printf("Quantas pessoas estão participando do bolão?\t");
+	printf("Quantas pessoas estÃ£o participando do bolÃ£o?\t");
 	scanf("%d", &j);
 	int k = 1;
 	int b = 1;
 	int i = np;
 	while(i>0){
 		system("cls");
-		printf("Digite o %dº resultado:\t", k);
+		printf("Digite o %dÂº resultado:\t", k);
 		scanf("%dx%d", &resultados[k].mandante, &resultados[k].visitante);
 		k++;
 		i--;
 	}
 	while(b<=j){
 		system("cls");
-		printf("Digite o nome do %dº participante:\t", b);
+		printf("Digite o nome do %dÂº participante:\t", b);
 		fflush(stdin);
 		gets(apostas[b].nome);
 		for(c=1;c<=np;c++){
 			system("cls");
-			printf("Digite a %dº aposta de %s:\t", c, apostas[b].nome);
+			printf("Digite a %dÂº aposta de %s:\t", c, apostas[b].nome);
 			scanf("%dx%d", &apostas[b].apostas[c].mandante, &apostas[b].apostas[c].visitante);
 		}
 		b++;
@@ -55,7 +55,12 @@ void main(){
 			else
 				if(apostas[x].apostas[y].mandante == resultados[y].mandante || apostas[x].apostas[y].visitante == resultados[y].visitante){
 					if(resultados[y].mandante > resultados[y].visitante && apostas[x].apostas[y].mandante > apostas[x].apostas[y].visitante || resultados[y].mandante < resultados[y].visitante && apostas[x].apostas[y].mandante < apostas[x].apostas[y].visitante){
-						if(resultados[y].mandante - resultados[y].visitante == 0 || apostas[x].apostas[y].mandante - apostas[x].apostas[y].visitante == 0) apostas[x].pontuacao[y] = 0;
+						if(resultados[y].mandante - resultados[y].visitante == 0 || apostas[x].apostas[y].mandante - apostas[x].apostas[y].visitante == 0){
+							if(apostas[x].apostas[y].mandante == resultados[y].mandante && apostas[x].apostas[y].visitante == resultados[y].visitante){
+								apostas[x].pontuacao[y] = 7;
+							}
+							else apostas[x].pontuacao[y] = 0;
+						}
 						else
 							if(resultados[y].mandante - resultados[y].visitante > 0 && resultados[y].mandante == apostas[x].apostas[y].mandante || resultados[y].visitante - resultados[y].mandante > 0 && resultados[y].visitante == apostas[x].apostas[y].visitante){
 								apostas[x].pontuacao[y] = 18;
